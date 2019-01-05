@@ -1,0 +1,27 @@
+<style>
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+</style>
+<html>
+    <head>
+        <title>JavaScript Calculator</title>
+        <script type="text/javascript" src="rpn.js"></script>
+    </head>
+    <body>
+        <center>
+            <h1>JavaScript calculator</h1>
+            <span>This calculator supports +,-,*,/,^ operations.</span><br><br>
+            
+            <input type="text" id="expression">
+            <br><br> 
+            <input type="button" value="Calculate" onclick="
+            rpn = ExpressionToRPN(document.getElementById('expression').value);
+            document.getElementById('rpn').innerHTML = rpn.join(' ');
+            document.getElementById('result').innerHTML = CalculateRPN(rpn);
+            "></button>
+            <br><br> Reversed Polish notation: <div id="rpn"></div>
+            Result: <div id="result"></div>
+        </center>
+    </body>
+</html>
