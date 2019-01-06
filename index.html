@@ -1,6 +1,53 @@
 <style>
 body{
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(25,25,25);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.calculatorBody{
+    border: 1px solid white;
+    border-radius: 10px; 
+    width:308px; 
+    height:425px;
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+.calculatorButton{
+    border: 1px solid rgb(49, 49, 49);
+    background-color: rgb(30,35,38);
+    text-align: center;
+    width: 75px;
+    height: 75px;
+    padding:0px;
+    margin:0px auto;
+    color: white;
+    font-size: 30px;
+    float:left;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; 
+}
+.calculatorOperationButton{
+    background-color: rgb(41,50,156); 
+}
+.calculatorButton:hover { background-color: rgb(107, 47, 47); }
+.calculatorButton:active {
+  background-color: rgb(94,78,182);
+}
+#expression{
+    width: 100%;
+    border: 0px;
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: right;
+}
+#expression:focus {
+    outline:0;
+    background-color: rgb(191, 206, 253);
 }
 </style>
 <html>
@@ -10,18 +57,35 @@ body{
     </head>
     <body>
         <center>
-            <h1>JavaScript calculator</h1>
-            <span>This calculator supports +,-,*,/,^ operations.</span><br><br>
-            
-            <input type="text" id="expression">
-            <br><br> 
-            <input type="button" value="Calculate" onclick="
-            rpn = ExpressionToRPN(document.getElementById('expression').value);
-            document.getElementById('rpn').innerHTML = rpn.join(' ');
-            document.getElementById('result').innerHTML = CalculateRPN(rpn);
-            "></button>
-            <br><br> Reversed Polish notation: <div id="rpn"></div>
-            Result: <div id="result"></div>
+            <h1>JavaScript calculator</h1> <br>
+
+            <div class="calculatorBody">
+                <input type="text" id="expression"><br>
+                
+                <div onclick="document.getElementById('expression').value += '^';" class="calculatorButton calculatorOperationButton">^</div>
+                <div onclick="
+                rpn = ExpressionToRPN(document.getElementById('expression').value);
+                document.getElementById('expression').value = rpn.join(' ');" class="calculatorButton calculatorOperationButton">RPN</div>
+                <div onclick="document.getElementById('expression').value = '';" class="calculatorButton calculatorOperationButton">Clear</div>
+                <div onclick="document.getElementById('expression').value += '/';" class="calculatorButton calculatorOperationButton">/</div>
+                <div onclick="document.getElementById('expression').value += '7';" class="calculatorButton">7</div>
+                <div onclick="document.getElementById('expression').value += '8';" class="calculatorButton">8</div>
+                <div onclick="document.getElementById('expression').value += '9';" class="calculatorButton">9</div> <div onclick="document.getElementById('expression').value += '+';" class="calculatorButton calculatorOperationButton">+</div>
+                <div onclick="document.getElementById('expression').value += '4';" class="calculatorButton">4</div>
+                <div onclick="document.getElementById('expression').value += '5';" class="calculatorButton">5</div>
+                <div onclick="document.getElementById('expression').value += '6';" class="calculatorButton">6</div> <div onclick="document.getElementById('expression').value += '-';" class="calculatorButton calculatorOperationButton">-</div>
+                <div onclick="document.getElementById('expression').value += '1';" class="calculatorButton">1</div>
+                <div onclick="document.getElementById('expression').value += '2';" class="calculatorButton">2</div>
+                <div onclick="document.getElementById('expression').value += '3';" class="calculatorButton">3</div> <div onclick="document.getElementById('expression').value += '*';" class="calculatorButton calculatorOperationButton">*</div>
+                <div onclick="document.getElementById('expression').value += '0';" class="calculatorButton">0</div> 
+                <div onclick="document.getElementById('expression').value += '.';" class="calculatorButton">.</div>
+                <div onclick="document.getElementById('expression').value = document.getElementById('expression').value.substr(0, document.getElementById('expression').value.length-1);" class="calculatorButton">del</div> 
+                <div onclick="
+                rpn = ExpressionToRPN(document.getElementById('expression').value);
+                document.getElementById('expression').value = CalculateRPN(rpn);
+                " class="calculatorButton calculatorOperationButton" style="background-color: rgb(255,113,45);">=</div>
+
+            </div>
         </center>
     </body>
 </html>
