@@ -100,3 +100,26 @@ function CalculateRPN(result) {
 	}
 	return stack;
 }
+
+// Tests
+function AreEqual(expected, actual){
+    if(expected == actual){
+        console.log("Test passed. Expected: " + expected + " | Actual: " + actual)
+    }
+    else{
+        console.log("Test failed. Expected: " + expected + " | Actual: " + actual)
+    }
+}
+
+function RunTests(){
+    console.log("Tests: ")
+    AreEqual('100,200,+',ExpressionToRPN("100+200"));
+    AreEqual(5, CalculateRPN(ExpressionToRPN("2+3")));
+    AreEqual(25, CalculateRPN(ExpressionToRPN("5 * 5")));
+    AreEqual(6, CalculateRPN(ExpressionToRPN("2+2*2")));
+    AreEqual(0, CalculateRPN(ExpressionToRPN("(0+0)")));
+    AreEqual(1004, CalculateRPN(ExpressionToRPN("5+(999 * 999)/999")));
+    AreEqual(0.5, CalculateRPN(ExpressionToRPN("1/2")));
+    AreEqual(false, Number.isFinite(CalculateRPN(ExpressionToRPN("1 / 0"))));
+    AreEqual(70,CalculateRPN(ExpressionToRPN("(5+5)*(5+6/3)")));
+}
